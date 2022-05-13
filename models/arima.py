@@ -10,7 +10,11 @@ df = df.dropna()
 model = sm.tsa.arima.ARIMA(df, order=(2, 1, 0))
 results_ARIMA = model.fit()
 print(results_ARIMA.summary())
+results_ARIMA.save('results/model.pkl')
+print("Model saved to model.pkl")
+print("\n\n")
 
-# Write results to new file
-with open('results/arima-results.txt', 'w') as f:
-    f.write(results_ARIMA.summary().as_text())
+# Load model
+from statsmodels.tsa.arima.model import ARIMAResults
+model = ARIMAResults.load('model.pkl')
+print(model.summary())
