@@ -1,10 +1,10 @@
 This github repository holds the details for our school project Walmart Strategic Sales Forecasting.
 
 ## Contributors/Project Members
-Xi Chen
-Emily Wang
-Kriti Bartaria
-Khiem Nguyen
+* Xi Chen: MS Data Science at Drexel University
+* Emily Wang: MS Data Science at Drexel University
+* Kriti Bartaria: MS Data Science at Drexel University
+* Khiem Nguyen: MS Data Science at Drexel University
 
 ## Project files structure
 * analysis: python notebooks of the Exploratory Data Analysis
