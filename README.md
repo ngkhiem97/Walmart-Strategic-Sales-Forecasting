@@ -12,3 +12,6 @@ This github repository holds the details for our school project Walmart Strategi
 * data: raw and processed data
 * models: machine learning model for sales prediction
 * notebooks: additional python notebooks related to the project
+
+## Resources
+* [Cross Validation in Time Series](https://medium.com/@soumyachess1496/cross-validation-in-time-series-566ae4981ce4)
