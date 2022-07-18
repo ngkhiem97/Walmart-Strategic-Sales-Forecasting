@@ -107,7 +107,7 @@ class Preprocessor:
             .pipe(self.get_historical)
         )
 
-    def load_and_preprocess(self, data_file, features_to_drop=None):
+    def load_and_preprocess(self, data_file, features_to_drop=[]):
         df = self.load_data(data_file)
         df_preprocessed = self.preprocess(df)
         df_preprocessed.drop(columns=features_to_drop, inplace=True)
