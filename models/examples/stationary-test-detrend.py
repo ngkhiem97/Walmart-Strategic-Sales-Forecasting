@@ -2,7 +2,7 @@ from statsmodels.tsa.stattools import adfuller
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv('../data/processed/calendar_processed-May-13-2022.csv')
+df = pd.read_csv('../../data/processed/calendar_processed-May-13-2022.csv')
 
 def ad_test(dataset):
     print("Total nulls:", dataset.isnull().sum())
