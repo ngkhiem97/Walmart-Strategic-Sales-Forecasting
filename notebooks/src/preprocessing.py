@@ -103,11 +103,16 @@ class Preprocessor:
     def preprocess(self, df):
         return (
             df
-            .pipe(self.get_day_value)
-            .pipe(self.is_holiday)
+            .pipe(self.get_day_info)
+            .pipe(self.get_historical)
         )
 
-    def load_and_preprocess(self, data_file):
-        return self.preprocess(self.load_data(data_file))
+    def load_and_preprocess(self, data_file, features_to_drop=None):
+        df = self.load_data(data_file)
+        df_preprocessed = self.preprocess(df)
+        df_preprocessed.drop(columns=features_to_drop, inplace=True)
+        if self.drop_na:
+            return df_preprocessed.dropna()
+        return df_preprocessed
 
 preprocessor = Preprocessor()
