@@ -13,8 +13,9 @@ X = df_processed.drop('store_sales', axis=1).to_numpy()
 Y = df_processed['store_sales'].to_numpy()
 
 class BlockingTimeSeriesSplit():
-    def __init__(self, n_splits):
+    def __init__(self, n_splits, test_size = -1):
         self.n_splits = n_splits
+        self.test_size = test_size
     
     def get_n_splits(self, X, y, groups):
         return self.n_splits
@@ -28,10 +29,13 @@ class BlockingTimeSeriesSplit():
         for i in range(self.n_splits):
             start = i * k_fold_size
             stop = start + k_fold_size
-            mid = int(0.5 * (stop - start)) + start
+            if self.test_size > 0:
+                mid = stop - self.test_size
+            else:
+                mid = int(0.5 * (stop - start)) + start
             yield indices[start: mid], indices[mid + margin: stop]
 
-tscv = BlockingTimeSeriesSplit(n_splits=5)
+tscv = BlockingTimeSeriesSplit(n_splits=5, test_size=30)
 
 print("Data length: " + str(len(X)))
 

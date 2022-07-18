@@ -12,7 +12,7 @@ df_processed = pre_modeling(df)
 X = df_processed.drop('store_sales', axis=1).to_numpy()
 Y = df_processed['store_sales'].to_numpy()
 
-tscv = TimeSeriesSplit()
+tscv = TimeSeriesSplit(test_size=30)
 print("Data length: " + str(len(X)))
 
 for train_index, test_index in tscv.split(X):

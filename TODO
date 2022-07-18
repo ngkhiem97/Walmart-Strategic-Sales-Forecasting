@@ -1,0 +1,4 @@
+* Change structure of the project so that packages can read eachother
+* Scale the dataset
+* Feature engineering/importance
+* Hyperparameter-tunning
