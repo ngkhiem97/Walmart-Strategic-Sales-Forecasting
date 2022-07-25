@@ -13,10 +13,7 @@ X = df_processed.drop('store_sales', axis=1).to_numpy()
 Y = df_processed['store_sales'].to_numpy()
 
 tscv = TimeSeriesSplit(test_size=30)
-print("Data length: " + str(len(X)))
 
 for train_index, test_index in tscv.split(X):
     X_train, X_test = X[train_index], X[test_index]
     Y_train, Y_test = Y[train_index], Y[test_index]
-    print(str(X_train.shape[0]) + ": " + str(X_test.shape[0]))
-    print("----------")
