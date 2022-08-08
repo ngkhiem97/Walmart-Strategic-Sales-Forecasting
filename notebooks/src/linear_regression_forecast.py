@@ -4,7 +4,7 @@ from sklearn.preprocessing import StandardScaler, RobustScaler, MinMaxScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import r2_score
-from sklearn.feature_selection import r_regression
+from sklearn.feature_selection import r_regression, f_regression
 import matplotlib.pyplot as plt
 
 class LinearRegressionForecast:
@@ -36,7 +36,7 @@ class LinearRegressionForecast:
         y_test = y[-self.test_size:]
         return X_train, X_test, y_train, y_test
 
-    def train_model(self, X_train, y_train, model, scaler=MinMaxScaler()):
+    def train_model(self, X_train, y_train, model, scaler=StandardScaler()):
         """ Trains model
 
         X: pandas DataFrame of the features
@@ -50,8 +50,8 @@ class LinearRegressionForecast:
             ('scaler', scaler),
             ('model', model)
         ])
-        pipeline.fit(X_train, y_train)
-        return pipeline
+        pipeline = pipeline.fit(X_train, y_train)
+        return pipeline, pipeline.named_steps['model']
 
     def evaluate(self, pipeline, X_train, X_test, y_train, y_test, plot=True):
         # evaluate the model.
@@ -66,17 +66,21 @@ class LinearRegressionForecast:
         return score
 
     def get_feature_correlation(self, X, y):
-        X = MinMaxScaler().fit_transform(X, y)
+        X = StandardScaler().fit_transform(X, y)
         return r_regression(X, y)
+    
+    def get_feature_correlation_f(self, X, y):
+        X = StandardScaler().fit_transform(X, y)
+        return f_regression(X, y)
 
     def split_train_and_plot(self, df, cat_cols, model=LinearRegression(),):
         # split X and y
         X, y = self.get_features_and_target(df=df, onehotencoding=cat_cols)
         X_train, X_test, y_train, y_test = self.split_train_test(X, y)
         # train model
-        trained_model = self.train_model(X_train, y_train, model)
-        score = self.evaluate(trained_model, X_train, X_test, y_train, y_test)
-        return trained_model, score
+        pipeline, trained_model = self.train_model(X_train, y_train, model)
+        score = self.evaluate(pipeline, X_train, X_test, y_train, y_test)
+        return X, y, trained_model, score
 
     def plot_pred_vs_test(self, y_pred, y_test):
         y = pd.DataFrame(y_test)
