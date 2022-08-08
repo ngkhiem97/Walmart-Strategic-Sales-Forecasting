@@ -51,3 +51,6 @@ The CPI data was also manually downloaded from the [U.S Bureau of Labor & Statis
 
 ## Resources
 * [Cross Validation in Time Series](https://medium.com/@soumyachess1496/cross-validation-in-time-series-566ae4981ce4)
+* [Time Series Cross-Validation](https://goldinlocks.github.io/Time-Series-Cross-Validation/)
+* [Building a Tractable, Feature Engineering Pipeline for Multivariate Time Series](https://www.kdnuggets.com/2022/03/building-tractable-feature-engineering-pipeline-multivariate-time-series.html)
+* [Feature Engineering for Multivariate Stock Market Prediction with Python](https://www.relataly.com/feature-engineering-for-multivariate-time-series-models-with-python/1813/#h-feature-engineering-for-stock-market-forecasting-borrowing-features-from-chart-analysis)

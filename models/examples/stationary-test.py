@@ -1,8 +1,7 @@
 from statsmodels.tsa.stattools import adfuller
 import pandas as pd
-import numpy as np
 
-df = pd.read_csv('../data/processed/calendar_processed-May-13-2022.csv')
+df = pd.read_csv('../../data/processed/calendar_processed-May-13-2022.csv')
 
 def ad_test(dataset):
     print("Total nulls:", dataset.isnull().sum())
@@ -18,7 +17,7 @@ def ad_test(dataset):
         print("\t",key, ": ", val)
 
     # Write results to file
-    with open('results/stationary-test-detrend-rolling-7-mean-results.txt', 'w') as f:
+    with open('results/stationary-test-results.txt', 'w') as f:
         f.write("1. ADF : " + str(dftest[0]) + "\n")
         f.write("2. P-Value : " + str(dftest[1]) + "\n")
         f.write("3. Num Of Lags : " + str(dftest[2]) + "\n")
@@ -27,6 +26,6 @@ def ad_test(dataset):
         for key, val in dftest[4].items():
             f.write("\t" + key + ": " + str(val) + "\n")
         
-total_sales = df['total_sales'].rolling(window=7).mean()
-ad_test(pd.DataFrame(np.diff(total_sales)))
+total_sales = df['total_sales']
+ad_test(total_sales)
 
