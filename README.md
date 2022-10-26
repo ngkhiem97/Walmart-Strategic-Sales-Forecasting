@@ -8,7 +8,7 @@ In any supply chain, especially retail, forecasting is essential for all parties
 
 In this capstone project for the capstone project of the MS Data Science program at Drexel University, we used machine learning (ML) to solve a time-series forecasting problem of predicting sales at Walmart stores. Walmart is a retail business that gets products from its supply partners to deliver to consumers. We will use Walmart sales data from 3 states across the United States (California, Texas, and Wisconsin) over several years to predict future sales. 
 
-## Contributors/Project Members
+## Contributors
 * Xi Chen: MS Data Science at Drexel University
 * Emily Wang: MS Data Science at Drexel University
 * Kriti Bartaria: MS Data Science at Drexel University
